@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -20,7 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.asoom.caffio.R
-import com.asoom.caffio.core.designSystem.CaffioDarkColors
+import com.asoom.caffio.core.designSystem.theme.CaffioTheme
 import com.asoom.caffio.core.designSystem.theme.ThemePreviews
 
 @Composable
@@ -29,8 +30,8 @@ fun CaffioButton(
     @DrawableRes icon: Int,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    backgroundColor: Color = CaffioDarkColors.Surface,
-    contentColor: Color = CaffioDarkColors.TextPrimary
+    backgroundColor: Color = CaffioTheme.colors.surface,
+    contentColor: Color = CaffioTheme.colors.textPrimary
 ) {
     Row(
         modifier = modifier
@@ -38,7 +39,6 @@ fun CaffioButton(
                 color = backgroundColor,
                 shape = RoundedCornerShape(50)
             )
-            .clickable(onClick = onClick)
             .padding(horizontal = 24.dp, vertical = 12.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
@@ -47,24 +47,31 @@ fun CaffioButton(
             text = text,
             color = contentColor,
             fontWeight = FontWeight.Bold,
-            fontSize = 22.sp
+            fontSize = 22.sp,
+            modifier = Modifier.clickable(onClick = onClick)
         )
         Spacer(modifier = Modifier.size(12.dp))
-        Icon(
-            painter = painterResource(id = icon),
-            contentDescription = null,
-            tint = contentColor,
+        IconButton(
+            onClick = onClick,
             modifier = Modifier.size(28.dp)
-        )
+        ) {
+            Icon(
+                painter = painterResource(id = icon),
+                contentDescription = null,
+                tint = contentColor
+            )
+        }
     }
 }
 
 @ThemePreviews
 @Composable
 fun PreviewCaffioButton() {
-    CaffioButton(
-        text = "bring my coffee",
-        icon = R.drawable.icon_cup,
-        onClick = {}
-    )
-} 
+    CaffioTheme {
+        CaffioButton(
+            text = "bring my coffee",
+            icon = R.drawable.icon_cup,
+            onClick = {}
+        )
+    }
+}
