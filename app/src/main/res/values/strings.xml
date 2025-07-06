@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Caffio</string>
+    <string name="ghost">Hocus\nPocus\nI Need coffee\nto Focus</string>
+    <string name="bring_my_coffee">"bring my coffee"</string>
 </resources>
