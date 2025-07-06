@@ -34,6 +34,7 @@ fun CaffioTopAppBar(
             title?.let {
                 Text(
                     text = it,
+                    style = CaffioTheme.typography.titleMedium,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.padding(start = 8.dp)
