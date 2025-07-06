@@ -15,14 +15,7 @@ import com.asoom.caffio.presentation.snack.SnackScreen
 fun CaffioNavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.Home.route) {
         composable(Screen.Home.route) {
-            HomeScreen(
-                onCoffeeClick = { coffeeId ->
-                    navController.navigate(Screen.CoffeeDetails.createRoute(coffeeId))
-                },
-                onSnackClick = {
-                    navController.navigate(Screen.Snack.route)
-                }
-            )
+            HomeScreen()
         }
 
         composable(

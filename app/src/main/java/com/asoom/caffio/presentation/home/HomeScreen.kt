@@ -2,151 +2,121 @@ package com.asoom.caffio.presentation.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.ui.zIndex
 import com.asoom.caffio.R
-import androidx.compose.ui.tooling.preview.Preview
 import com.asoom.caffio.core.designSystem.theme.CaffioTheme
 import com.asoom.caffio.core.designSystem.theme.ThemePreviews
 import com.asoom.caffio.core.ui.ActionButton
+import com.asoom.caffio.core.ui.BlurredOvalOverlay
+import com.asoom.caffio.core.ui.CaffioButton
+import com.asoom.caffio.core.ui.CaffioTopAppBar
 
 @Composable
 fun HomeScreen(
-    onCoffeeClick: (String) -> Unit,
-    onSnackClick: () -> Unit
 ) {
-    Box(
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(24.dp)
-    ) {
-        // Top Row: Avatar and Add button
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.TopCenter),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.account),
-                contentDescription = "Avatar",
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(CircleShape)
-            )
-            ActionButton(
-                onClick = { /* TODO: Add action */ },
-                actionIcon = R.drawable.icon_add,
-                backgroundColor = MaterialTheme.colorScheme.primary,
-                iconColor = Color.White
-            )
-        }
+            .background(CaffioTheme.colors.surface)
+            .statusBarsPadding()
+            .padding(all = 12.dp)
 
-        // Main Content
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.Center),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "Good Morning",
-                style = MaterialTheme.typography.titleLarge.copy(
-                    color = Color(0xFFBDBDBD),
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 28.sp
+    ) {
+        CaffioTopAppBar(
+            navigationButton = {
+                Image(
+                    painter = painterResource(id = R.drawable.account),
+                    contentDescription = "Account Icon",
+                    modifier = Modifier.size(48.dp)
                 )
-            )
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(
-                    text = "Hamsa",
-                    style = MaterialTheme.typography.titleLarge.copy(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 32.sp,
-                        color = Color.Black
-                    )
-                )
-                Spacer(modifier = Modifier.width(4.dp))
-                Icon(
-                    painter = painterResource(id = R.drawable.icon_star),
-                    contentDescription = "Star",
-                    tint = Color.Unspecified,
-                    modifier = Modifier.size(28.dp)
+            },
+            actionButton = {
+                ActionButton(
+                    onClick = {},
+                    actionIcon = R.drawable.icon_add,
                 )
             }
-            Text(
-                text = "What would you like to drink today?",
-                style = MaterialTheme.typography.bodyLarge.copy(
-                    color = Color(0xFF757575),
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 16.sp
-                ),
-                modifier = Modifier.padding(top = 4.dp, bottom = 24.dp)
-            )
-            Image(
-                painter = painterResource(id = R.drawable.coffio),
-                contentDescription = "Coffee Cup",
-                modifier = Modifier
-                    .size(200.dp)
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            Text(
-                text = "Black",
-                style = MaterialTheme.typography.titleLarge.copy(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 28.sp,
-                    color = Color.Black
-                )
-            )
-        }
+        )
 
-        // Continue Button
         Box(
             modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 24.dp)
+                .padding(top = 24.dp)
+                .size(height = 200.dp, width = 216.dp)
+                .align(Alignment.CenterHorizontally)
         ) {
-            Row(
+            Text(
+                text = stringResource(R.string.ghost),
+                style = CaffioTheme.typography.headlineLarge,
+                color = CaffioTheme.colors.textPrimary,
+                textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .clip(RoundedCornerShape(50))
-                    .background(Color.Black)
-                    .clickable { onCoffeeClick("Black") }
-                    .padding(horizontal = 32.dp, vertical = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "Continue",
-                    color = Color.White,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 18.sp
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Icon(
-                    painter = painterResource(id = R.drawable.icon_arrow_right),
-                    contentDescription = "Arrow Right",
-                    tint = Color.White,
-                    modifier = Modifier.size(24.dp)
-                )
-            }
+                    .zIndex(2f)
+                    .fillMaxWidth()
+            )
+
+            Image(
+                painter = painterResource(R.drawable.icon_star),
+                contentDescription = "Star Icon",
+                modifier = Modifier
+                    .zIndex(1f)
+                    .align(Alignment.TopStart)
+                    .padding(start = 26.dp, top = 58.dp)
+            )
+
+            Image(
+                painter = painterResource(R.drawable.icon_star),
+                contentDescription = "Star Icon",
+                modifier = Modifier
+                    .zIndex(1f)
+                    .align(Alignment.TopEnd)
+                    .padding(top = 2.dp, end = 18.dp)
+            )
+
+            Image(
+                painter = painterResource(R.drawable.icon_star),
+                contentDescription = "Star Icon",
+                modifier = Modifier
+                    .zIndex(1f)
+                    .align(Alignment.BottomEnd)
+            )
         }
+
+        Image(
+            painter = painterResource(R.drawable.ghost),
+            contentDescription = "Ghost Coffe",
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(top = 33.dp)
+                .size(244.dp)
+        )
+
+        BlurredOvalOverlay(modifier = Modifier.align(Alignment.CenterHorizontally))
+        Spacer(modifier = Modifier.weight(1f))
+
+        CaffioButton(
+            text = stringResource(R.string.bring_my_coffee),
+            icon = R.drawable.icon_cup,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(bottom = 50.dp),
+            onClick = {}
+        )
     }
 }
 
@@ -155,8 +125,6 @@ fun HomeScreen(
 fun PreviewHomeScreen() {
     CaffioTheme {
         HomeScreen(
-            onCoffeeClick = {},
-            onSnackClick = {}
         )
     }
 }
