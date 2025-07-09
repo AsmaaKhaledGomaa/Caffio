@@ -1,4 +1,4 @@
-package com.asoom.caffio.core.ui
+package com.asoom.caffio.core.ui.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
