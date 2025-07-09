@@ -1,0 +1,137 @@
+package com.asoom.caffio.presentation.screen.snack
+
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.pager.VerticalPager
+import androidx.compose.foundation.pager.rememberPagerState
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.asoom.caffio.R
+import com.asoom.caffio.core.ui.components.ActionButton
+import org.koin.compose.viewmodel.koinViewModel
+import kotlin.math.abs
+
+@Composable
+fun SnackScreen(
+    viewModel: SnackViewModel = koinViewModel(),
+    modifier: Modifier = Modifier
+){
+    Column(
+        modifier = modifier
+            .fillMaxSize()
+            .background(Color.White)
+    ) {
+        ActionButton(
+            modifier = Modifier.padding(start = 16.dp),
+            onClick = {},
+            actionIcon = R.drawable.ic_exit
+        )
+        Text(
+            text = "Take your snack",
+            textAlign = TextAlign.Center,
+            style = TextStyle(
+                fontSize = 22.sp,
+                fontWeight = FontWeight.Bold
+            ),
+            modifier = Modifier.padding(top = 24.dp , start = 16.dp)
+        )
+        val imageList = listOf(
+            R.drawable.oreo,
+            R.drawable.cookies,
+            R.drawable.chocolate,
+            R.drawable.croissant,
+            R.drawable.lasagna,
+            R.drawable.cupcake
+        )
+        Box(
+            modifier = Modifier.fillMaxSize().padding(top = 16.dp)
+        ){
+            ZoomPager(
+                items = imageList,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 16.dp)
+                    .offset(x = (-50).dp),
+                onClick = { viewModel.onClickCard() }
+            )
+        }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+private fun ZoomPager(
+    items: List<Int>,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
+
+    val pagerState = rememberPagerState(
+        pageCount = { items.size },
+        initialPage = 1
+    )
+
+
+    VerticalPager(
+        state = pagerState,
+        pageSpacing = 16.dp,
+        contentPadding = PaddingValues(vertical = 250.dp),
+        modifier = modifier
+            .fillMaxSize()
+    ) { page ->
+
+        val pageOffset = (pagerState.currentPage - page) + pagerState.currentPageOffsetFraction
+
+        val scale = 1.7f - abs(pageOffset) * 0.15f
+        val horizontalOffset = (-80f * abs(pageOffset)).dp
+
+        Box(
+            modifier = Modifier
+                .graphicsLayer {
+                    scaleX = scale
+                    scaleY = scale
+                    translationX = horizontalOffset.toPx()
+                }
+                .padding(8.dp)
+                .fillMaxWidth()
+                .height(200.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = painterResource(id = items[page]),
+                contentDescription = null,
+                modifier = Modifier.clickable {
+                    onClick()
+                }
+            )
+
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun SnackScreenPreview(){
+    SnackScreen()
+}
