@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Caffio</string>
+    <string name="ghost">Hocus\nPocus\nI Need coffee\nto Focus</string>
+    <string name="bring_my_coffee">"bring my coffee"</string>
+    <string name="continue_coffio">"Continue"</string>
+    <string name="thank_youu">Thank youu</string>
+    <string name="take_snack">Take snack</string>
+    <string name="good_morning">Good Morning</string>
+    <string name="what_would_you_like_to_drink">What would you like to drink today?</string>
 </resources>

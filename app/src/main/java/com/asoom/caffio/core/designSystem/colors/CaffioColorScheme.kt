@@ -13,7 +13,9 @@ internal fun createColorScheme(colors: CaffioColors): ColorScheme {
             onPrimary = colors.textPrimary,
             onBackground = colors.textPrimary,
             onSurface = colors.textPrimary,
-            secondary = colors.accent
+            secondary = colors.accent,
+            onSecondary = colors.onSecondry,
+            primaryContainer = colors.primaryContainer
         )
     } else {
         darkColorScheme(
@@ -23,7 +25,9 @@ internal fun createColorScheme(colors: CaffioColors): ColorScheme {
             onPrimary = colors.textPrimary,
             onBackground = colors.textPrimary,
             onSurface = colors.textPrimary,
-            secondary = colors.accent
+            secondary = colors.accent,
+            onSecondary = colors.onSecondry,
+            primaryContainer = colors.primaryContainer
         )
     }
 }
