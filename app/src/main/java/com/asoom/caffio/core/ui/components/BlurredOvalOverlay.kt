@@ -1,4 +1,4 @@
-package com.asoom.caffio.core.ui
+package com.asoom.caffio.core.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -26,9 +26,11 @@ fun BlurredOvalOverlay(
     height: Dp = 27.65.dp,
     backgroundColor: Color = CaffioTheme.colors.background
 ) {
-    Box(modifier = modifier
-        .width(width)
-        .height(height)) {
+    Box(
+        modifier = modifier
+            .width(width)
+            .height(height)
+    ) {
         Box(
             modifier = Modifier
                 .fillMaxSize()
