@@ -88,7 +88,7 @@ fun CoffeeDetailsScreen(
 
     LaunchedEffect(showProgress) {
         if (showProgress && !animationFinished) {
-            delay(15000)
+            delay(11000)
             animationFinished = true
             navController.navigate(Destinations.ReadyCoffee)
         }

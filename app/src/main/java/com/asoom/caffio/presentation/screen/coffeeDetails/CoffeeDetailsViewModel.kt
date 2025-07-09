@@ -16,7 +16,7 @@ class CoffeeDetailsViewModel(
         updateUiState { it.copy(type = coffeeType) }
     }
     override fun onClickButton() {
-        navigate(Destinations.DeliverCoffee)
+        navigate(Destinations.ReadyCoffee)
     }
 
     override fun onClickBack() {
