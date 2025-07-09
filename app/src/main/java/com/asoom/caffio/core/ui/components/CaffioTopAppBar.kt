@@ -1,4 +1,4 @@
-package com.asoom.caffio.core.ui
+package com.asoom.caffio.core.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,7 +25,7 @@ fun CaffioTopAppBar(
     modifier: Modifier = Modifier,
     title: String? = null,
     backgroundColor: Color = CaffioTheme.colors.surface,
-    actionButton: (@Composable (() -> Unit))? = null,
+    onClickActionButton: (@Composable (() -> Unit))? = null,
     navigationButton: (@Composable (() -> Unit))? = null
 ) {
     TopAppBar(
@@ -45,7 +45,7 @@ fun CaffioTopAppBar(
             navigationButton?.invoke()
         },
         actions = {
-            actionButton?.invoke()
+            onClickActionButton?.invoke()
         },
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = backgroundColor
@@ -81,7 +81,7 @@ fun CaffioTopAppBarAccountPreview() {
                     modifier = Modifier.size(48.dp)
                 )
             },
-            actionButton = {
+            onClickActionButton = {
                 ActionButton(
                     onClick = {},
                     actionIcon = R.drawable.icon_add,
