@@ -18,8 +18,8 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -38,19 +38,12 @@ import com.asoom.caffio.core.ui.components.CaffioButton
 import com.asoom.caffio.core.ui.components.CaffioTopAppBar
 import org.koin.compose.koinInject
 import kotlin.math.abs
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
 
 @Composable
 fun SelectCoffeeScreen(
     modifier: Modifier = Modifier,
     viewModel: SelectCoffeeViewModel = koinInject()
 ) {
-    println("[TRACE][SelectCoffeeScreen] Composable recomposed")
-    val uiState by viewModel.uiState.collectAsState()
-    val isNavigating = remember { mutableStateOf(false) }
-
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -81,8 +74,8 @@ fun SelectCoffeeScreen(
             println("[WARN][SelectCoffeeScreen] selectedIndex out of bounds: ${selectedIndex.value}, resetting to 0")
             selectedIndex.value = 0
         }
-        val selectedCoffeeName = coffeeNamesList.getOrNull(selectedIndex.value) ?: coffeeNamesList[0]
-        println("[TRACE][SelectCoffeeScreen] selectedIndex=${selectedIndex.value}, selectedCoffeeName=$selectedCoffeeName, coffeeNamesList=$coffeeNamesList")
+        val selectedCoffeeName =
+            coffeeNamesList.getOrNull(selectedIndex.value) ?: coffeeNamesList[0]
 
         ZoomPager(
             items = itemsList,
@@ -99,7 +92,6 @@ fun SelectCoffeeScreen(
             text = stringResource(R.string.continue_coffio),
             icon = R.drawable.icon_arrow_right,
             onClick = {
-                println("[TRACE][SelectCoffeeScreen] Button clicked. selectedCoffeeName=$selectedCoffeeName")
                 viewModel.onClickButton(selectedCoffeeName)
             },
             modifier = Modifier

@@ -34,9 +34,9 @@ import kotlin.math.abs
 
 @Composable
 fun SnackScreen(
+    modifier: Modifier = Modifier,
     viewModel: SnackViewModel = koinViewModel(),
-    modifier: Modifier = Modifier
-){
+) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -54,7 +54,7 @@ fun SnackScreen(
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold
             ),
-            modifier = Modifier.padding(top = 24.dp , start = 16.dp)
+            modifier = Modifier.padding(top = 24.dp, start = 16.dp)
         )
         val imageList = listOf(
             R.drawable.oreo,
@@ -65,8 +65,10 @@ fun SnackScreen(
             R.drawable.cupcake
         )
         Box(
-            modifier = Modifier.fillMaxSize().padding(top = 16.dp)
-        ){
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 16.dp)
+        ) {
             ZoomPager(
                 items = imageList,
                 modifier = Modifier
@@ -132,6 +134,6 @@ private fun ZoomPager(
 
 @Preview
 @Composable
-private fun SnackScreenPreview(){
+private fun SnackScreenPreview() {
     SnackScreen()
 }
