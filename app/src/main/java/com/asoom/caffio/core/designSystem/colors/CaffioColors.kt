@@ -14,11 +14,13 @@ data class CaffioColors(
     val textPrimary: Color,
     val textSecondary: Color,
     val accent: Color,
+    val onSecondry: Color,
+    val primaryContainer: Color,
     val isLight: Boolean
 ) {
     companion object {
         fun light() = CaffioColors(
-            primary = Color(0xFF7C351B),
+            primary = Color(0x80B94B23),
             iconBackground = Color(0xFFF5F5F5),
             background = Color(0xFF1F1F1F),
             onBackground = Color(0x241F1F1F),
@@ -26,6 +28,8 @@ data class CaffioColors(
             textPrimary = Color(0xDE1F1F1F),
             textSecondary = Color(0xDEFFFFFF),
             accent = Color(0xDE1F1F1F),
+            onSecondry = Color(0xFFB3B3B3),
+            primaryContainer = Color(0xFF3B3B3B),
             isLight = true
         )
 
@@ -38,6 +42,8 @@ data class CaffioColors(
             textPrimary = Color(0xDEFFFFFF),
             textSecondary = Color(0x99FFFFFF),
             accent = Color(0xFFFFFFFF),
+            onSecondry = Color(0xFFB3B3B3),
+            primaryContainer = Color(0xFF3B3B3B),
             isLight = false
         )
     }
