@@ -40,6 +40,7 @@ fun SnackScreen(
     Column(
         modifier = modifier
             .fillMaxSize()
+            .padding(top = 16.dp)
             .background(Color.White)
     ) {
         ActionButton(

@@ -14,7 +14,7 @@ import com.asoom.caffio.presentation.screen.home.HomeScreen
 import com.asoom.caffio.presentation.screen.readyCoffee.ReadyCoffeeScreen
 import com.asoom.caffio.presentation.screen.selectCoffee.SelectCoffeeScreen
 import com.asoom.caffio.presentation.screen.snack.SnackScreen
-import com.asoom.caffio.presentation.screen.thankYou.OrderCompleteScreen
+import com.asoom.caffio.presentation.screen.orderComplete.OrderCompleteScreen
 import com.asoom.caffio.presentation.utils.ObserveAsEvents
 import org.koin.compose.koinInject
 
