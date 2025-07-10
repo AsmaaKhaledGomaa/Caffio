@@ -36,11 +36,12 @@ fun OrderCompleteScreen(
 ) {
     Column(
         modifier = modifier
-            .fillMaxSize()
             .background(Color.White)
+            .fillMaxSize()
+            .padding(horizontal = 16.dp)
     ) {
         ActionButton(
-            modifier = Modifier.padding(start = 16.dp),
+            modifier = Modifier,
             onClick = {},
             actionIcon = R.drawable.ic_exit
         )
@@ -60,7 +61,7 @@ fun OrderCompleteScreen(
             Text(
                 text = "More Espresso, Less Depresso",
                 style = TextStyle(
-                    fontSize = 20.sp,
+                    fontSize = 16.sp,
                     fontWeight = FontWeight.Normal
                 ),
                 modifier = Modifier.align(Alignment.CenterVertically)
