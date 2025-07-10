@@ -88,7 +88,7 @@ fun CoffeeDetailsScreen(
 
     LaunchedEffect(showProgress) {
         if (showProgress && !animationFinished) {
-            delay(11000)
+            delay(9000)
             animationFinished = true
             navController.navigate(Destinations.ReadyCoffee)
         }
@@ -129,6 +129,12 @@ fun CoffeeDetailsScreen(
                     .padding(top = 60.dp)
                     .zIndex(1f)
             ) {
+                CoffeeBeanAnimation(
+                    coffeeLevel = coffeeLevel.value,
+                    beanCount = beanCount.value,
+                    modifier = Modifier.align(Alignment.Center)
+                )
+
                 Image(
                     painter = painterResource(id = R.drawable.ic_starbuks),
                     contentDescription = "Cup",
@@ -212,14 +218,6 @@ fun CoffeeDetailsScreen(
 
             Spacer(modifier = Modifier.weight(1f))
         }
-
-        CoffeeBeanAnimation(
-            coffeeLevel = coffeeLevel.value,
-            beanCount = beanCount.value,
-            modifier = Modifier
-                .fillMaxSize()
-                .zIndex(2f)
-        )
 
         AnimatedVisibility(
             visible = showProgress,

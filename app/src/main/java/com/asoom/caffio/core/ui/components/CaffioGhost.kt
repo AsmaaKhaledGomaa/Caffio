@@ -35,11 +35,11 @@ fun CaffioGhost(
     val infiniteTransition = rememberInfiniteTransition(label = "floating")
 
     val offsetY by infiniteTransition.animateValue(
-        initialValue = 0.dp,
+        initialValue = 5.dp,
         targetValue = (-10).dp,
         typeConverter = Dp.VectorConverter,
         animationSpec = infiniteRepeatable(
-            animation = tween(1500, easing = LinearEasing),
+            animation = tween(1200, easing = LinearEasing),
             repeatMode = RepeatMode.Reverse
         ),
         label = "floatingOffset"

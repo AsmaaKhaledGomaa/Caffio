@@ -71,7 +71,6 @@ fun SelectCoffeeScreen(
 
         val selectedIndex = rememberSaveable { mutableStateOf(0) }
         if (selectedIndex.value !in coffeeNamesList.indices) {
-            println("[WARN][SelectCoffeeScreen] selectedIndex out of bounds: ${selectedIndex.value}, resetting to 0")
             selectedIndex.value = 0
         }
         val selectedCoffeeName =
